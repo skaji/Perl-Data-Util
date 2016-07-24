@@ -6,8 +6,13 @@ use base 'Module::Build::XSUtil';
 
 sub new {
     my ( $class, %args ) = @_;
+
+    my $requires = delete $args{requires} || +{};
+    $requires->{'MRO::Compat'} = '0.09' if $] < 5.010_000;
+
     my $self = $class->SUPER::new(
         %args,
+        requires => $requires,
         c_source => 'xs-src',
         xs_files => {
             './xs-src/DataUtil.xs' => './lib/Data/Util.xs',

@@ -1,5 +1,6 @@
 requires 'XSLoader', '0.02';
 requires 'perl', '5.008001';
+requires 'MRO::Compat', '0.09' if $] < 5.010_000;
 
 on build => sub {
     requires 'Devel::PPPort', '3.19';
